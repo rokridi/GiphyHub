@@ -21,7 +21,9 @@ class GiphyHubTests: XCTestCase {
         super.tearDown()
     }
     
-    func testSerachGIFs() {
+    //MARK: GIF
+    
+    func testSearchGIFs() {
         
         let expectation = self.expectation(description: "searchGifs")
         
@@ -47,7 +49,122 @@ class GiphyHubTests: XCTestCase {
         }
     }
     
-    func testSerachStickers() {
+    func testTrendingGifs() {
+    
+        let expectation = self.expectation(description: "trendingGifs")
+        
+        let giphyHub = GiphyHub.init(apiKey: "96f613decdc6456ea4d522492d3b0477")
+        
+        let _ = giphyHub.trendingGifs(limit: nil, offset: nil, rating: nil, language: nil, queue: nil) { (gifs, pagination, error) in
+            
+            expectation.fulfill()
+            
+            XCTAssert(error == nil, error as! String)
+            XCTAssertNotNil(gifs, "Response should not be nil")
+            XCTAssertNotNil(pagination, "Response should not be nil")
+            
+            for gif in gifs! {
+                
+                print("GIF identifier = \(gif.identifier!)")
+            }
+        }
+        
+        waitForExpectations(timeout: 10) { error in
+            XCTAssertNil(error, "\(String(describing: error))")
+        }
+    }
+    
+    func testTranslateGif() {
+    
+        let expectation = self.expectation(description: "translateGif")
+        
+        let giphyHub = GiphyHub.init(apiKey: "96f613decdc6456ea4d522492d3b0477")
+        
+        let _ = giphyHub.translateGif("cat", queue: nil) { (gif, error) in
+            
+            expectation.fulfill()
+            
+            XCTAssert(error == nil, error as! String)
+            XCTAssertNotNil(gif, "Response should not be nil")
+            
+            print("GIF identifier = \(String(describing: gif?.identifier!))")
+        }
+        
+        waitForExpectations(timeout: 10) { error in
+            XCTAssertNil(error, "\(String(describing: error))")
+        }
+    }
+    
+    func testRandomGif() {
+        
+        let expectation = self.expectation(description: "randomGif")
+        
+        let giphyHub = GiphyHub.init(apiKey: "96f613decdc6456ea4d522492d3b0477")
+        
+        let _ = giphyHub.randomGif(nil, rating: nil, queue: nil) { (gif, error) in
+            
+            expectation.fulfill()
+            
+            XCTAssert(error == nil, error as! String)
+            XCTAssertNotNil(gif, "Response should not be nil")
+            
+            print("GIF identifier = \(String(describing: gif?.identifier!))")
+        }
+        
+        waitForExpectations(timeout: 10) { error in
+            XCTAssertNil(error, "\(String(describing: error))")
+        }
+    }
+    
+    func testGifs() {
+    
+        let expectation = self.expectation(description: "gifs")
+        
+        let giphyHub = GiphyHub.init(apiKey: "96f613decdc6456ea4d522492d3b0477")
+        
+        let _ = giphyHub.gifs(identifiers: ["JIX9t2j0ZTN9S", "vFKqnCdLPNOKc"], offset: nil, rating: nil, language: nil, queue: nil) { (gifs, pagination, error) in
+            
+            expectation.fulfill()
+            
+            XCTAssert(error == nil, error as! String)
+            XCTAssertNotNil(gifs, "Response should not be nil")
+            XCTAssertNotNil(pagination, "Response should not be nil")
+            
+            for gif in gifs! {
+                
+                print("GIF identifier = \(gif.identifier!)")
+            }
+        }
+        
+        waitForExpectations(timeout: 10) { error in
+            XCTAssertNil(error, "\(String(describing: error))")
+        }
+    }
+    
+    func testGif() {
+    
+        let expectation = self.expectation(description: "gif")
+        
+        let giphyHub = GiphyHub.init(apiKey: "96f613decdc6456ea4d522492d3b0477")
+        
+        let _ = giphyHub.gif(identifier: "D862bz3nKLo7C", language: nil, queue: nil) { (gif, error) in
+            
+            expectation.fulfill()
+            
+            XCTAssert(error == nil, error as! String)
+            XCTAssertNotNil(gif, "Response should not be nil")
+            
+            print("GIF identifier = \(String(describing: gif?.identifier!))")
+        }
+        
+        waitForExpectations(timeout: 10) { error in
+            XCTAssertNil(error, "\(String(describing: error))")
+        }
+    }
+    
+    //MARK: Stickers
+    
+    func testSearchStickers() {
         
         let expectation = self.expectation(description: "searchGifs")
         
@@ -61,6 +178,30 @@ class GiphyHubTests: XCTestCase {
             XCTAssertNotNil(stickers, "Response should not be nil")
             XCTAssertNotNil(pagination, "Response should not be nil")
             
+            for sticker in stickers! {
+                
+                print("Sticker identifier = \(sticker.identifier!)")
+            }
+        }
+        
+        waitForExpectations(timeout: 10) { error in
+            XCTAssertNil(error, "\(String(describing: error))")
+        }
+    }
+    
+    func testTrendingStickers() {
+        
+        let expectation = self.expectation(description: "trendingStickers")
+        
+        let giphyHub = GiphyHub.init(apiKey: "96f613decdc6456ea4d522492d3b0477")
+        
+        let _ = giphyHub.trendingStickers(limit: nil, offset: nil, rating: nil, language: nil, queue: nil) { (stickers, pagination, error) in
+            
+            expectation.fulfill()
+            
+            XCTAssert(error == nil, error as! String)
+            XCTAssertNotNil(stickers, "Response should not be nil")
+            XCTAssertNotNil(pagination, "Response should not be nil")
             
             for sticker in stickers! {
                 
@@ -73,23 +214,20 @@ class GiphyHubTests: XCTestCase {
         }
     }
     
-    func testRandomGifs() {
+    func testTranslateSticker() {
         
-        let expectation = self.expectation(description: "randomGifs")
+        let expectation = self.expectation(description: "translateSticker")
         
         let giphyHub = GiphyHub.init(apiKey: "96f613decdc6456ea4d522492d3b0477")
         
-        let _ = giphyHub.randomGif(nil, rating: nil, queue: nil) { (gifs, _, error) in
+        let _ = giphyHub.translateSticker("cat", queue: nil) { (sticker, error) in
             
             expectation.fulfill()
             
             XCTAssert(error == nil, error as! String)
-            XCTAssertNotNil(gifs, "Response should not be nil")
+            XCTAssertNotNil(sticker, "Response should not be nil")
             
-            for gif in gifs! {
-                
-                print("Gif identifier = \(gif.identifier!)")
-            }
+            print("Sticker identifier = \(String(describing: sticker?.identifier!))")
         }
         
         waitForExpectations(timeout: 10) { error in
@@ -97,40 +235,24 @@ class GiphyHubTests: XCTestCase {
         }
     }
     
-    func testRandomStickers() {
+    func testRandomSticker() {
         
-        let expectation = self.expectation(description: "randomGifs")
+        let expectation = self.expectation(description: "randomSticker")
         
         let giphyHub = GiphyHub.init(apiKey: "96f613decdc6456ea4d522492d3b0477")
         
-        let _ = giphyHub.randomSticker(nil, rating: nil, queue: nil) { (stickers, _, error) in
+        let _ = giphyHub.randomSticker(nil, rating: nil, queue: nil) { (sticker, error) in
             
             expectation.fulfill()
             
             XCTAssert(error == nil, error as! String)
-            XCTAssertNotNil(stickers, "Response should not be nil")
+            XCTAssertNotNil(sticker, "Response should not be nil")
             
-            for gif in stickers! {
-                
-                print("Sticker identifier = \(gif.identifier!)")
-            }
+            print("Sticker identifier = \(String(describing: sticker?.identifier!))")
         }
         
         waitForExpectations(timeout: 10) { error in
             XCTAssertNil(error, "\(String(describing: error))")
         }
     }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
 }

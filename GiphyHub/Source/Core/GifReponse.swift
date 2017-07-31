@@ -26,20 +26,64 @@ public struct GifPagination: Mappable {
     }
 }
 
-class GifReponse: Mappable {
+class GiphyResponse: StaticMappable {
     
-    var gifs:[Gif]?
     var httpResponseCode: UInt?
-    var pagination: GifPagination?
+    var message: String?
     
     required init?(map: Map) {
     }
     
     func mapping(map: Map) {
         
-        gifs <- map["data"]
         httpResponseCode <- map["meta.status"]
-        pagination <- map["pagination"]
+        message <- map["meta.msg"]
     }
     
+    class func objectForMapping(map: Map) -> BaseMappable? {
+        
+        if let _:[String: AnyObject]? = map["pagination"].value() {
+            
+            return GifsResponse(map: map)
+            
+        } else {
+            
+            return GifResponse(map: map)
+        }
+    }
+}
+
+class GifsResponse: GiphyResponse {
+    
+    var gifs:[Gif]?
+    var pagination: GifPagination?
+    
+    required init?(map: Map) {
+        
+        super.init(map: map)
+    }
+    
+    override func mapping(map: Map) {
+        
+        super.mapping(map: map)
+        
+        pagination <- map["pagination"]
+        gifs <- map["data"]
+    }
+}
+
+class GifResponse: GiphyResponse {
+    
+    var gif:Gif?
+    
+    required init?(map: Map) {
+        
+        super.init(map: map)
+    }
+    
+    override func mapping(map: Map) {
+        
+        super.mapping(map: map)
+        gif <- map["data"]
+    }
 }

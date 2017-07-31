@@ -53,7 +53,7 @@
 		D9FD738D1F2F4B42001E36BE /* GifImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GifImage.swift; sourceTree = "<group>"; };
 		D9FD738E1F2F4B42001E36BE /* GifReponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GifReponse.swift; sourceTree = "<group>"; };
 		D9FD738F1F2F4B42001E36BE /* Routers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routers.swift; sourceTree = "<group>"; };
-		D9FD73901F2F4B42001E36BE /* GiphyHub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiphyHub.swift; sourceTree = "<group>"; };
+		D9FD73901F2F4B42001E36BE /* GiphyHub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GiphyHub.swift; path = Source/GiphyHub.swift; sourceTree = "<group>"; };
 		D9FD73921F2F4B42001E36BE /* GiphyHub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GiphyHub.h; sourceTree = "<group>"; };
 		D9FD73931F2F4B42001E36BE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB3ED22BF20886CE8E4B6E5D /* Pods-GiphyHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiphyHub.release.xcconfig"; path = "Pods/Target Support Files/Pods-GiphyHub/Pods-GiphyHub.release.xcconfig"; sourceTree = "<group>"; };
@@ -116,6 +116,7 @@
 			children = (
 				D9FD73731F2F3BCD001E36BE /* GiphyHub.h */,
 				D9FD738A1F2F4B42001E36BE /* Source */,
+				D9FD73901F2F4B42001E36BE /* GiphyHub.swift */,
 				D9FD73911F2F4B42001E36BE /* Supporting Files */,
 				D9FD73741F2F3BCD001E36BE /* Info.plist */,
 			);
@@ -135,7 +136,6 @@
 			isa = PBXGroup;
 			children = (
 				D9FD738B1F2F4B42001E36BE /* Core */,
-				D9FD73901F2F4B42001E36BE /* GiphyHub.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";

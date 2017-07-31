@@ -73,6 +73,30 @@ class GiphyHubTests: XCTestCase {
         }
     }
     
+    func testRandomGifs() {
+        
+        let expectation = self.expectation(description: "randomGifs")
+        
+        let giphyHub = GiphyHub.init(apiKey: "96f613decdc6456ea4d522492d3b0477")
+        
+        let _ = giphyHub.randomGif(nil, rating: nil, queue: nil) { (gifs, _, error) in
+            
+            expectation.fulfill()
+            
+            XCTAssert(error == nil, error as! String)
+            XCTAssertNotNil(gis, "Response should not be nil")
+            
+            for gif in gifs! {
+                
+                print("Sticker identifier = \(gif.identifier!)")
+            }
+        }
+        
+        waitForExpectations(timeout: 10) { error in
+            XCTAssertNil(error, "\(String(describing: error))")
+        }
+    }
+    
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.

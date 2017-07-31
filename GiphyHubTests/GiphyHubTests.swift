@@ -84,9 +84,33 @@ class GiphyHubTests: XCTestCase {
             expectation.fulfill()
             
             XCTAssert(error == nil, error as! String)
-            XCTAssertNotNil(gis, "Response should not be nil")
+            XCTAssertNotNil(gifs, "Response should not be nil")
             
             for gif in gifs! {
+                
+                print("Gif identifier = \(gif.identifier!)")
+            }
+        }
+        
+        waitForExpectations(timeout: 10) { error in
+            XCTAssertNil(error, "\(String(describing: error))")
+        }
+    }
+    
+    func testRandomStickers() {
+        
+        let expectation = self.expectation(description: "randomGifs")
+        
+        let giphyHub = GiphyHub.init(apiKey: "96f613decdc6456ea4d522492d3b0477")
+        
+        let _ = giphyHub.randomSticker(nil, rating: nil, queue: nil) { (stickers, _, error) in
+            
+            expectation.fulfill()
+            
+            XCTAssert(error == nil, error as! String)
+            XCTAssertNotNil(stickers, "Response should not be nil")
+            
+            for gif in stickers! {
                 
                 print("Sticker identifier = \(gif.identifier!)")
             }

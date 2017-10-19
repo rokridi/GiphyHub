@@ -17,17 +17,15 @@ Pod::Spec.new do |s|
 
   s.name         = "GiphyHub"
   s.version      = "1.0.0"
-  s.summary      = "A short description of GiphyHub."
+  s.summary      = "GiphyHub is a helper that consumes GiphyAPI web services in order to fetch GIFs and stickers."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  s.description  = <<-DESC
-                   DESC
 
-  s.homepage     = "http://EXAMPLE/GiphyHub"
+  s.homepage     = "https://github.com/rokridi/GiphyHub"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -38,9 +36,7 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  s.license      = "MIT (example)"
-  # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
-
+  s.license      = "MIT"
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -122,7 +118,11 @@ Pod::Spec.new do |s|
   #  where they will only apply to your library. If you depend on other Podspecs
   #  you can include multiple dependencies to ensure it works.
 
-    s.requires_arc = 'true'
+    s.pod_target_xcconfig = {
+      'SWIFT_VERSION' => '4.0',
+    }
+  
+    s.requires_arc = true
 
     s.dependency 'Alamofire', '~> 4.4'
     s.dependency 'AlamofireObjectMapper', '~> 4.0'

@@ -124,8 +124,8 @@ Pod::Spec.new do |s|
   
     s.requires_arc = true
 
-    s.dependency 'Alamofire', '~> 4.4'
-    s.dependency 'AlamofireObjectMapper', '~> 4.0'
+    s.dependency 'Alamofire', '~> 4.5'
+    s.dependency 'AlamofireObjectMapper', '~> 5.0'
     s.dependency 'ObjectMapper', '~> 2.2'
 
 end
